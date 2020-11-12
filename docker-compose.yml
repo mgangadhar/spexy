@@ -1,0 +1,26 @@
+version: '3.5'
+services:
+
+  core:
+    image: spexy/spexy-core:edge
+    container_name: spexy-core
+    hostname: spexy-core
+    ports:
+      - "8001:800"
+    volumes:
+      - ~/spexy/parsedlogs:/home/appuser/spexy/parsedlogs
+      - ~/.spexy:/home/appuser/.spexy
+    depends_on:
+      - view
+
+  view:
+    image: spexy/spexy-view
+    container_name: spexy-view
+    hostname: spexy-view
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_LICENSE_URI=Free
+      - SPLUNK_PASSWORD=admin1234
+    volumes:
+      - ~/spexy/parsedlogs:/home/appuser/spexy/parsedlogs
+      
