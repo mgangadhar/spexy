@@ -2,7 +2,7 @@ version: '3.5'
 services:
 
   core:
-    image: spexy/spexy-core:edge
+    image: spexy/spexy-core
     container_name: spexy-core
     hostname: spexy-core
     ports:
